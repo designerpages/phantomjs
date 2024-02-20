@@ -47,8 +47,8 @@ module Phantomjs
     # Run phantomjs with the given arguments, and either
     # return the stdout or yield each line to the passed block.
     def run(*args, &block)
+      path = "#{path} --ssl-protocol=any --ignore-ssl-errors=yes"
       IO.popen([path, *args]) do |io|
-        binding.pry
         block ? io.each(&block) : io.read
       end
     end
