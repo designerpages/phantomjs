@@ -22,7 +22,7 @@ module Phantomjs
     end
 
     def path
-      @path ||= "#{platform.phantomjs_path} --ssl-protocol=any --ignore-ssl-errors=yes"
+      @path ||= platform.phantomjs_path
     end
 
     def platform
@@ -48,6 +48,7 @@ module Phantomjs
     # return the stdout or yield each line to the passed block.
     def run(*args, &block)
       IO.popen([path, *args]) do |io|
+        binding.pry
         block ? io.each(&block) : io.read
       end
     end
