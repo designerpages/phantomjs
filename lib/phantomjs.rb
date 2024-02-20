@@ -22,7 +22,7 @@ module Phantomjs
     end
 
     def path
-      @path ||= platform.phantomjs_path
+      @path ||= "#{platform.phantomjs_path} --ssl-protocol=any --ignore-ssl-errors=yes"
     end
 
     def platform
